@@ -16,6 +16,11 @@ class LivreController extends Controller
         $livres =  Livre::where("stock", ">", 1)->with('categorie')->limit(15)->get();
         return response()->json($livres, 200);
     }
+    public function AdminIndex()
+    {
+        $livres =  Livre::where("stock", ">", 1)->with('categorie')->limit(15)->get();
+        return view('ex.aficherLivre', compact("livres"));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -55,7 +60,7 @@ class LivreController extends Controller
         try {
             $ids = $request->query('ids');
             $livres =  Livre::whereNotIn("id", $ids)->where("stock", ">", 1)->with('categorie')->limit(15)->get();
-            return response()->json($livres ,200);
+            return response()->json($livres, 200);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 500);
         }

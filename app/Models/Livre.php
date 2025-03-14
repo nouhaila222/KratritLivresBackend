@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Livre extends Model
 {
 
+
     public function avis()
     {
         return $this->hasMany(Avi::class, 'livre_id', 'id');

@@ -10,8 +10,7 @@ class Location extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-
-
+    
     public function livre()
     {
         return $this->belongsTo(Livre::class, 'livre_id', 'id');

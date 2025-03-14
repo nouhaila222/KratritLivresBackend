@@ -1,1 +1,6 @@
-hello qer
+@extends('layout')
+
+
+hello 
+qersd
+

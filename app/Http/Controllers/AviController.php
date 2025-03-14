@@ -12,7 +12,8 @@ class AviController extends Controller
      */
     public function index()
     {
-        //
+        $avis = avi::all();
+        return response()->json($avis, 200);
     }
 
     /**

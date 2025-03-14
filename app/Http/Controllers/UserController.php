@@ -32,7 +32,7 @@ class UserController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json(['message' => 'Email ou mot de passe incorrect'], 401);
         }
-
+        
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
@@ -41,6 +41,11 @@ class UserController extends Controller
             'token' => $token
         ]);
     }
+
+
+
+
+
     public function store(Request $r)
     {
 
@@ -49,17 +54,19 @@ class UserController extends Controller
                 "name" => 'required|string',
                 "email" => 'required|string|email|unique:users',
             ]);
+
             $user = new User;
             $user->name = $r->name;
             $user->email = $r->email;
             $user->password = $r->password;
             $user->save();
+
             return response()->json([
                 "message" => "user Created successfuly",
                 "id" => $user->id
             ]);
 
-            //code...
+
         } catch (\Throwable $th) {
             //throw $th;
             return response()->json(['message' => $th->getMessage(), "status" =>  "not ok "], 400);
