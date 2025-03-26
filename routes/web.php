@@ -11,4 +11,8 @@ Route::get('/test', function () {
 });
 
 
-Route::get('/livres/list', [LivreController::class, "AdminIndex"]);
+Route::get('/livres', [LivreController::class, "AdminIndex"]);
+Route::get('/livres/add', [LivreController::class, "create"]);
+Route::get('/livres/store', [LivreController::class, "store"]);
+Route::get('/livres/update/{id}', [LivreController::class, "edit"]);
+Route::put('/livres/{id}', [LivreController::class, "update"]);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Livre;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
@@ -13,12 +14,13 @@ class LivreController extends Controller
      */
     public function index()
     {
-        $livres =  Livre::where("stock", ">", 1)->with('categorie')->limit(15)->get();
+        $livres =  Livre::where("stock", ">", 1)->with('categorie')->limit(50)->get();
         return response()->json($livres, 200);
     }
+
     public function AdminIndex()
     {
-        $livres =  Livre::where("stock", ">", 1)->with('categorie')->limit(15)->get();
+        $livres =  Livre::where("stock", ">", 1)->with('categorie')->paginate(20);
         return view('ex.aficherLivre', compact("livres"));
     }
 
@@ -27,7 +29,8 @@ class LivreController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Categorie::all();
+        return view("ex.addLivre", compact("categories"));
     }
 
     /**
@@ -35,7 +38,13 @@ class LivreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "nom" => "required|string",
+            "auteur" => "required|string",
+            "stock" => "required|integer",
+            "prix" => "required|float",
+
+        ]);
     }
 
     /**
@@ -68,17 +77,35 @@ class LivreController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Livre $livre)
+    public function edit(Request $request)
     {
-        //
+        $book =  Livre::where("id", $request->id)->with('categorie')->with('avis.user')->with("locations.user")->first();
+        $categories = Categorie::all();
+        return view("ex.modiferLivre", compact("book", "categories"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Livre $livre)
+    public function update(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nom' => 'required|string|max:255',
+            'auteur' => 'required|string|max:255',
+            'stock' => 'required|integer|min:0',
+            'prix' => 'required|numeric|min:0',
+            'categorie_id' => 'required|exists:categories,id',
+        ]);
+
+
+        Livre::where('id', $request->id)->update([
+            'nom' => $request->nom,
+            'auteur' => $request->auteur,
+            'stock' => $request->stock,
+            'prix' => $request->prix,
+            'categorie_id' => $request->categorie_id
+        ]);
+        return redirect("/livres");
     }
 
     /**
