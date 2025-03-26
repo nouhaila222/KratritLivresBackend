@@ -16,13 +16,18 @@ class CategorieController extends Controller
         $data = categorie::all();
         return response()->json($data, 200);
     }
+    public function AdminIndex()
+    {
+        $data = categorie::paginate(10);
+        return view("crud-categorie.index", ["categories" => $data]);
+    }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('crud-categorie.addcategorie');
     }
 
     /**

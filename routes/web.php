@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\LivreController;
+use App\Http\Controllers\CategorieController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,3 +18,9 @@ Route::get('/livres/add', [LivreController::class, "create"]);
 Route::get('/livres/store', [LivreController::class, "store"]);
 Route::get('/livres/update/{id}', [LivreController::class, "edit"]);
 Route::put('/livres/{id}', [LivreController::class, "update"]);
+
+
+// -----------------------
+Route::get('/categories', [CategorieController::class, "AdminIndex"]);
+Route::get('/categories/ajouter', [CategorieController::class, "create"]);
+
