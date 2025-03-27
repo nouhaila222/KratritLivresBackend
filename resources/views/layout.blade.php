@@ -20,9 +20,9 @@
             seide bare
         </div>
 
-        <div class="wmia h-full c-s-s">
+        <div class="w-full  h-full c-s-s">
             <div class="w-full border p-2 bg-red-500">Header</div>
-            <div class="border w-full h-full max-h-full overflow-auto">
+            <div class=" w-full h-full  max-h-full r-c-c overflow-auto">
                 @yield('content')           
             </div>
         </div>

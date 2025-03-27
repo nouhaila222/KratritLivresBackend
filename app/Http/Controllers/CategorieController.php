@@ -16,7 +16,12 @@ class CategorieController extends Controller
         $data = categorie::all();
         return response()->json($data, 200);
     }
-
+    
+    public function Adminindex()
+    {
+        $categories = categorie::all();
+        return view("GES_LOACTION.categorie",compact('categories'));
+    }
     /**
      * Show the form for creating a new resource.
      */

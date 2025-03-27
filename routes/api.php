@@ -44,3 +44,4 @@ Route::middleware("auth:sanctum")->get("/user/logout", function (Request $reques
     $request->user()->tokens()->delete();
     return response()->json("", 200);
 });
+
