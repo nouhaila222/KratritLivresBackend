@@ -4,10 +4,10 @@
     <div class="container mx-auto px-4 py-6">
         <div class="w-full r-b-c">
 
-            <h1 class="text-2xl font-semibold text-gray-800 mb-4">Books List</h1>
+            <h1 class="text-2xl font-semibold text-gray-800 mb-4">Categories List</h1>
             <div class="r-s-c">
-                <a href="/livres/add" class="r-c-c p-2 px-4 rounded-xl bg-blue-500 text-white font-semibold">Ajouter
-                    livre
+                <a href="/categories/ajouter" class="r-c-c p-2 px-4 rounded-xl bg-blue-500 text-white font-semibold">Ajouter
+                    categorie
                     <svg class="stroke-2 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" strokelinecap="round" strokelinejoin="round" width={32} height={32}
                         strokeWidth={1}>
@@ -25,26 +25,21 @@
                     <tr>
                         <th class="border border-gray-300 px-4 py-2">ID</th>
                         <th class="border border-gray-300 px-4 py-2">Nom</th>
-                        <th class="border border-gray-300 px-4 py-2">Auteur</th>
-                        <th class="border border-gray-300 px-4 py-2">Stock</th>
-                        <th class="border border-gray-300 px-4 py-2">Prix ( MAD )</th>
-                        <th class="border border-gray-300 px-4 py-2">Catégorie</th>
+                        <th class="border border-gray-300 px-4 py-2">description</th>
+  
                         <th class="border border-gray-300 px-4 py-2">Créé le</th>
                         <th class="border border-gray-300 px-4 py-2">Mis à jour</th>
                         <th class="border border-gray-300 px-4 py-2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($livres as $book)
+                    @foreach ($categories as $categorie)
                         <tr class="hover:bg-gray-50">
-                            <td class="border border-gray-300 px-4 py-2">{{ $book->id }}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{ $book->nom }}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{ $book->auteur }}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{ $book->stock }}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{ number_format($book->prix, 2) }}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{ $book->categorie->nom }}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{ $book->created_at->format('d/m/Y H:i') }}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{ $book->updated_at->format('d/m/Y H:i') }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ $categorie->id }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ $categorie->nom }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ $categorie->description }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ $categorie->created_at->format('d/m/Y H:i') }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ $categorie->updated_at->format('d/m/Y H:i') }}</td>
                             <td class="border  c-c-c border-gray-300 px-4 py-2">
                                 <div class="border group relative border-gray-300 rounded-md p-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
@@ -53,7 +48,8 @@
                                     </svg>
                                     <div
                                         class="absolute z-10 hidden group-hover:flex w-[200px] top-0 p-2 rounded-xl bg-white right-0 c-s-s drop-shadow-xl  action_container">
-                                        <a href={{url("/livres/update/". $book->id)}}
+                                        <a href=
+                                        '{{url("/livres/update/". $categorie->id)}}'
                                             class="r-s-c mb-4 p-2 px-3 border border-gray-300 w-full rounded-xl font-semibold">
                                             <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                 fill="none" stroke="currentColor" strokelinecap="round"
@@ -89,7 +85,7 @@
             </table>
         </div>
         <div class="w-full r-e-c mt-4">
-            {{ $livres->links() }}
+            {{ $categories->links() }}
         </div>
     </div>
 @endsection

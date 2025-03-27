@@ -1,11 +1,11 @@
-
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-weight: 500;
   transition: .15s;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  /* font-family: "Boldonse", system-ui; */
 }
 
 body {
@@ -313,32 +313,19 @@ h2 {
   font-weight: 500;
 }
 
-.aiResponseStyle h1 {
-  font-size: 22px;
+.action_container {
+  animation: animateAciton .1s;
+  transform-origin: top right;
+
 }
 
-.aiResponseStyle h3 {
-  font-size: 16px;
-}
+@keyframes animateAciton {
+  0% {
+    scale: 0;
+  }
 
-.aiResponseStyle h2 {
-  font-size: 18px;
-}
+  100% {
+    scale: 1;
+  }
 
-.aiResponseStyle ul {
-  padding-left: 10px;
-}
-
-.aiResponseStyle p {
-  margin: 3px 0;
-  font-size: 14px;
-}
-
-.aiResponseStyle pre {
-  /* font-size: 18px; */
-  background-color: black;
-  padding: 20px;
-  border-radius: 14px;
-  color: #fff;
-  margin: 10px 0;
 }
