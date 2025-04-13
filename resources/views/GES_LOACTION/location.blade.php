@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@
            <select  id="filterDate" class="form-select" onchange="filterorders()">
             <option value="all">Toutes les dates</option>
             @foreach ($dates as $date)
-            <option value="{{$date}}" {{request('date') == $date ? 'selected': ''}}>{{$date}}</option>    
+            <option value="{{$date}}" {{request('date') == $date ? 'selected': ''}}>{{$date}}</option>
             @endforeach
            </select>
         </div>
@@ -23,7 +23,7 @@
     <script>
         function filterorders(){
             let selectedDate = document.getElementById('filterDate').value;
-            window.location.href= '{{url(commandes)}} ?date='+ selectedDate;
+            window.location.href= '' ?date='+ selectedDate;
         }
     </script>
         <main class='main'>
@@ -65,7 +65,7 @@
                        <td>
                         @php
                             $paiementClass=$commande->statut_paiement == 'paiement effectue' ?
-                             'success' : 'danger'; 
+                             'success' : 'danger';
                         @endphp
                         <span class="badge{{$paiementClass}}">{{$commande->statut_paiement ?? 'Non defini'}}</span>
                        </td>
@@ -82,10 +82,12 @@
                         </div>
                        </td>
                     </tr>
-        
+
                     @endforeach
                 </tbody>
             </table>
         </main>
 </body>
 </html>
+
+

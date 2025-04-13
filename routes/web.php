@@ -13,16 +13,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return response("welcome in kratritLivres back-office");
 });
-Route::get('/test', function () {
-    return view("GES_LOACTION.index");
-});
+Route::get('/location', [LocationController::class,'index']);
 
 
 Route::get('/categorie', [CategorieController::class , 'Adminindex']);
 
 Route::get('/livres/list', [LivreController::class, "AdminIndex"]);
 
-Route::get('/commandes', 'CommandeController')->name('user');
+//Route::get('/commandes', 'CommandeController')->name('user');
 
 Route::get('/livres', [LivreController::class, "AdminIndex"]);
 Route::get('/livres/add', [LivreController::class, "create"]);

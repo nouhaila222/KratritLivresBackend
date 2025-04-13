@@ -36,7 +36,7 @@
                         <path d="M9 8h6"></path>
                     </svg> CRUD livres
                 </a>
-                <a href="" class="w-full text-white  mb-4 p-2 rounded-2xl  font-semibold r-s-c">
+                <a href="{{url("/categories")}}" class="w-full text-white  mb-4 p-2 rounded-2xl  font-semibold r-s-c">
                     <svg class="stroke-white stroke-2 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" strokelinecap="round" strokelinejoin="round" width={20}
                         height={20} strokeWidth={1.25}>
@@ -47,7 +47,7 @@
                     </svg>
                     CRUD categories
                 </a>
-                <a href="" class="w-full text-white  mb-4 p-2 rounded-2xl  font-semibold r-s-c">
+                <a href="{{url("/location")}}" class="w-full text-white  mb-4 p-2 rounded-2xl  font-semibold r-s-c">
                     <svg class="fill-white mr-2" xmlns="http://www.w3.org/2000/svg" height="24px"
                         viewBox="0 -960 960 960" width="24px" fill="#5f6368">
                         <path
@@ -80,17 +80,16 @@
                 </a>
             </div>
 
-            <a href="" class="r-c-c text-white">Deconneter 
+            <a href="" class="r-c-c text-white">Deconneter
                 <svg class="fill-white ml-2" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
             </a>
         </div>
 
-<<<<<<< HEAD
         <div class="w-full  h-full c-s-s">
-            <div class="w-full border p-2 bg-red-500">Header</div>
+            {{-- <div class="w-full border p-2 bg-red-500">Header</div> --}}
             <div class=" w-full h-full  max-h-full r-c-c overflow-auto">
-                @yield('content')           
-=======
+                {{-- @yield('content') --}}
+
         <div class="w-full h-full c-s-s ">
             <div class="w-full  r-b-c  p-2 ">
                 <div class="r-s-c p-2 px-3 rounded-3xl drop-shadow bg-white border border-gray-300">
@@ -125,14 +124,14 @@
                             <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                         </svg>
-                        <h1>Mustapha iderkaoui</h1>
+                        <h1>Nouhaila Elmaksoub</h1>
                     </span>
                 </div>
             </div>
 
             <div class="border w-full h-full max-h-full overflow-auto r-c-S">
                 @yield('content')
->>>>>>> 845f683c865f7c0282d93519af678253f2cf0489
+
             </div>
         </div>
 

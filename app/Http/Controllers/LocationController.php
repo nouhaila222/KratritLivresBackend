@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Location;
+use App\Models\User;
+use App\Models\Livre;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -12,7 +14,8 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
+        $locations = Location::with(['user', 'livre'])->paginate(10);
+        return view('GES_LOACTION.location', compact('locations'));
     }
 
     /**
@@ -20,7 +23,9 @@ class LocationController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $livres = Livre::all();
+        return view('crud-location.create', compact('users', 'livres'));
     }
 
     /**
@@ -28,7 +33,16 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'livre_id' => 'required|exists:livres,id',
+            'user_id' => 'required|exists:users,id',
+            'date_debut' => 'required|date',
+            'date_fin' => 'nullable|date|after_or_equal:date_debut',
+        ]);
+
+        Location::create($validated);
+
+        return redirect()->route('locations.index')->with('success', 'Location enregistrée avec succès');
     }
 
     /**
@@ -36,7 +50,7 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        //
+        return view('crud-location.show', compact('location'));
     }
 
     /**
@@ -44,7 +58,9 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
-        //
+        $users = User::all();
+        $livres = Livre::all();
+        return view('crud-location.edit', compact('location', 'users', 'livres'));
     }
 
     /**
@@ -52,7 +68,16 @@ class LocationController extends Controller
      */
     public function update(Request $request, Location $location)
     {
-        //
+        $validated = $request->validate([
+            'livre_id' => 'required|exists:livres,id',
+            'user_id' => 'required|exists:users,id',
+            'date_debut' => 'required|date',
+            'date_fin' => 'nullable|date|after_or_equal:date_debut',
+        ]);
+
+        $location->update($validated);
+
+        return redirect()->route('locations.index')->with('success', 'Location mise à jour');
     }
 
     /**
@@ -60,6 +85,7 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        $location->delete();
+        return redirect()->route('locations.index')->with('success', 'Location supprimée');
     }
 }
